@@ -1,5 +1,7 @@
 package acker.brian.af_stats.data.model
 
+import org.json.JSONObject
+
 class Game(
     val sport: Sport,
     val gameId: String,
@@ -11,6 +13,21 @@ class Game(
     var opponentScore: Int = 0,
     var result: Result = Result.DRAW
 ) {
+
+    fun toJson(): JSONObject {
+        val jsonObject = JSONObject()
+        jsonObject.put(JsonFields.SPORT, sport)
+        jsonObject.put(JsonFields.GAME_ID, gameId)
+        jsonObject.put(JsonFields.SCORESHEET, JsonFields.statsListToJson(scoreSheet))
+        jsonObject.put(JsonFields.SEASONID, seasonId)
+        jsonObject.put(JsonFields.TEAM_NAME, teamName)
+        jsonObject.put(JsonFields.OPPONENT_NAME, opponentName)
+        jsonObject.put(JsonFields.TEAM_SCORE, teamScore)
+        jsonObject.put(JsonFields.OPPONENT_SCORE, opponentScore)
+        jsonObject.put(JsonFields.RESULT, result)
+
+        return jsonObject
+    }
 
     enum class Sport {
         FOOTBALL,

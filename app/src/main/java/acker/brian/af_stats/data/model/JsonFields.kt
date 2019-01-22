@@ -1,5 +1,7 @@
 package acker.brian.af_stats.data.model
 
+import org.json.JSONArray
+
 // constants class containing field names for converting data models to/from json
 object JsonFields {
     // general field names
@@ -27,4 +29,26 @@ object JsonFields {
     const val DEF_SACKS = "def_sacks"
     const val DEF_INT = "def_int"
     const val DEF_TD = "def_td"
+
+    // game/season object field names
+    const val GAME_ID = "game_id"
+    const val SEASONID = "season_id"
+    const val SCORESHEET = "scoresheet"
+    const val TEAM_NAME = "team_name"
+    const val OPPONENT_NAME = "opponent_name"
+    const val TEAM_SCORE = "team_score"
+    const val OPPONENT_SCORE = "opponent_score"
+    const val RESULT = "result"
+
+    fun statsListToJson(statsList: MutableList<PlayerStats>): JSONArray {
+        val jsonArray = JSONArray()
+
+        if (!statsList.isEmpty()) {
+            for (stats in statsList) {
+                jsonArray.put(stats.toJson())
+            }
+        }
+
+        return jsonArray
+    }
 }
