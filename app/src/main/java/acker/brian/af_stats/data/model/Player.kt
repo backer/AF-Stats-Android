@@ -1,6 +1,7 @@
 package acker.brian.af_stats.data.model
 
 import android.util.ArrayMap
+import org.json.JSONObject
 import timber.log.Timber
 
 class Player(
@@ -11,6 +12,17 @@ class Player(
     val seasons: MutableMap<Game.Sport, MutableList<Season>> = ArrayMap(),
     val allTimeStats: MutableMap<Game.Sport, PlayerStats> = ArrayMap()
 ) {
+    fun toJson(): JSONObject {
+        val jsonObject = JSONObject()
+        jsonObject.put(JsonFields.FIRST_NAME, firstName)
+        jsonObject.put(JsonFields.LAST_NAME, lastName)
+        jsonObject.put(JsonFields.PLAYER_ID, playerId)
+        jsonObject.put(JsonFields.NUMBERS, JsonFields.numbersMapToJson(numbers))
+        jsonObject.put(JsonFields.SEASONS, JsonFields.seasonsMapToJson(seasons))
+        jsonObject.put(JsonFields.ALL_TIME_STATS, allTimeStats)
+
+        return jsonObject
+    }
 
     // calculates all time stats based on stats from each season
     private fun calculateAllTimeFromSeasons() {

@@ -1,6 +1,8 @@
 package acker.brian.af_stats.data.model
 
+import android.util.ArrayMap
 import org.json.JSONArray
+import org.json.JSONObject
 
 // constants class containing field names for converting data models to/from json
 object JsonFields {
@@ -30,7 +32,7 @@ object JsonFields {
     const val DEF_INT = "def_int"
     const val DEF_TD = "def_td"
 
-    // game/season object field names
+    // game/season specific field names
     const val GAME_ID = "game_id"
     const val SEASONID = "season_id"
     const val SCORESHEET = "scoresheet"
@@ -48,6 +50,11 @@ object JsonFields {
     const val TOTAL_POINTS_SCORED = "total_points_scored"
     const val TOTAL_POINTS_ALLOWED = "total_points_allowed"
     const val POINT_DIFFERENTIAL = "point_differential"
+
+    // player specific field names
+    const val NUMBERS = "numbers"
+    const val SEASONS = "seasons"
+    const val ALL_TIME_STATS = "all_time_stats"
 
     fun statsListToJson(statsList: MutableList<PlayerStats>): JSONArray {
         val jsonArray = JSONArray()
@@ -71,5 +78,50 @@ object JsonFields {
         }
 
         return jsonArray
+    }
+
+    private fun seasonsListToJson(seasons: MutableList<Season>): JSONArray {
+        val jsonArray = JSONArray()
+
+        if (!seasons.isEmpty()) {
+            for (season in seasons) {
+                jsonArray.put(season.toJson())
+            }
+        }
+
+        return jsonArray
+    }
+
+    fun seasonsMapToJson(seasons: MutableMap<Game.Sport, MutableList<Season>> = ArrayMap()): JSONObject {
+        val jsonObject = JSONObject()
+        for (key in seasons.keys) {
+            val seasons = seasons[key]
+            if (!seasons.isNullOrEmpty()) {
+                jsonObject.put(key.name.toLowerCase(), seasonsListToJson(seasons))
+            }
+        }
+
+        return jsonObject
+    }
+
+    fun allTimeStatsMapToJson(allTimeStats: MutableMap<Game.Sport, PlayerStats>): JSONObject {
+        val jsonObject = JSONObject()
+        for (key in allTimeStats.keys) {
+            val value = allTimeStats[key]
+            if (value != null) {
+                jsonObject.put(key.name.toLowerCase(), value.toJson())
+            }
+        }
+
+        return jsonObject
+    }
+
+    fun numbersMapToJson(numbers: MutableMap<Game.Sport, Int>): JSONObject {
+        val jsonObject = JSONObject()
+        for (key in numbers.keys) {
+            jsonObject.put(key.name.toLowerCase(), numbers[key])
+        }
+
+        return jsonObject
     }
 }
