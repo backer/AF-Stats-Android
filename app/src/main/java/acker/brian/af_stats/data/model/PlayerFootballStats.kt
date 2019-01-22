@@ -127,6 +127,7 @@ data class PlayerFootballStats(
         jsonObject.put(JsonFields.DEF_SACKS, defSacks)
         jsonObject.put(JsonFields.DEF_INT, defInt)
         jsonObject.put(JsonFields.DEF_TD, defTd)
+        jsonObject.put(JsonFields.FANTASY_POINTS, fantasyPoints)
 
         return jsonObject
     }

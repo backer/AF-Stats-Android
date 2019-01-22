@@ -31,6 +31,7 @@ object JsonFields {
     const val DEF_SACKS = "def_sacks"
     const val DEF_INT = "def_int"
     const val DEF_TD = "def_td"
+    const val FANTASY_POINTS = "fantasy_points"
 
     // game/season specific field names
     const val GAME_ID = "game_id"
