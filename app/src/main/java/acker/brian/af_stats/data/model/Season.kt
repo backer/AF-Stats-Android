@@ -1,5 +1,7 @@
 package acker.brian.af_stats.data.model
 
+import org.json.JSONObject
+
 class Season(
     val teamName: String,
     val seasonId: String,
@@ -15,6 +17,25 @@ class Season(
     var totalPointsAllowed: Int = 0,
     var pointDifferential: Int = 0
 ) {
+    fun toJson(): JSONObject {
+        val jsonObject = JSONObject()
+        jsonObject.put(JsonFields.YEAR, year)
+        jsonObject.put(JsonFields.SESSION_NUMBER, sessionNumber)
+        jsonObject.put(JsonFields.SPORT, sport)
+        jsonObject.put(JsonFields.GAMES, JsonFields.gamesListToJson(games))
+        jsonObject.put(JsonFields.SCORESHEET, JsonFields.statsListToJson(scoreSheet))
+        jsonObject.put(JsonFields.WINS, winCount)
+        jsonObject.put(JsonFields.LOSSES, lossCount)
+        jsonObject.put(JsonFields.DRAWS, drawCount)
+        jsonObject.put(JsonFields.SEASONID, seasonId)
+        jsonObject.put(JsonFields.TEAM_NAME, teamName)
+        jsonObject.put(JsonFields.TOTAL_POINTS_SCORED, totalPointsScored)
+        jsonObject.put(JsonFields.TOTAL_POINTS_ALLOWED, totalPointsAllowed)
+        jsonObject.put(JsonFields.POINT_DIFFERENTIAL, pointDifferential)
+
+        return jsonObject
+    }
+
     // calculates all relevant values based on the games list
     fun tallyValuesFromGames() {
         if (games.isEmpty()) {

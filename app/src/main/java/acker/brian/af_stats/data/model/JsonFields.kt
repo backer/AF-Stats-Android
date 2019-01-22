@@ -39,6 +39,15 @@ object JsonFields {
     const val TEAM_SCORE = "team_score"
     const val OPPONENT_SCORE = "opponent_score"
     const val RESULT = "result"
+    const val YEAR = "year"
+    const val SESSION_NUMBER = "sessionNumber"
+    const val GAMES = "games"
+    const val WINS = "wins"
+    const val LOSSES = "losses"
+    const val DRAWS = "draws"
+    const val TOTAL_POINTS_SCORED = "total_points_scored"
+    const val TOTAL_POINTS_ALLOWED = "total_points_allowed"
+    const val POINT_DIFFERENTIAL = "point_differential"
 
     fun statsListToJson(statsList: MutableList<PlayerStats>): JSONArray {
         val jsonArray = JSONArray()
@@ -46,6 +55,18 @@ object JsonFields {
         if (!statsList.isEmpty()) {
             for (stats in statsList) {
                 jsonArray.put(stats.toJson())
+            }
+        }
+
+        return jsonArray
+    }
+
+    fun gamesListToJson(games: MutableList<Game>): JSONArray {
+        val jsonArray = JSONArray()
+
+        if (!games.isEmpty()) {
+            for (game in games) {
+                jsonArray.put(game.toJson())
             }
         }
 
