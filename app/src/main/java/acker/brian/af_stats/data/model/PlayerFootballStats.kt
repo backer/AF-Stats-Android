@@ -1,5 +1,6 @@
 package acker.brian.af_stats.data.model
 
+import org.json.JSONObject
 import timber.log.Timber
 
 data class PlayerFootballStats(
@@ -100,5 +101,33 @@ data class PlayerFootballStats(
         defTd += newStats.defTd
 
         fantasyPoints = calculateFantasyPoints()
+    }
+
+    override fun toJson(): JSONObject {
+        val jsonObject = JSONObject()
+        jsonObject.put(JsonFields.PLAYER_ID, playerId)
+        jsonObject.put(JsonFields.FIRST_NAME, firstName)
+        jsonObject.put(JsonFields.LAST_NAME, lastName)
+        jsonObject.put(JsonFields.SPORT, sport)
+        jsonObject.put(JsonFields.COMPLETIONS, completions)
+        jsonObject.put(JsonFields.PASS_ATTEMPTS, passAttempts)
+        jsonObject.put(JsonFields.PASSING_YARDS, passingYards)
+        jsonObject.put(JsonFields.PASSING_TD, passingTd)
+        jsonObject.put(JsonFields.INT_THROWN, intThrown)
+        jsonObject.put(JsonFields.PASSING_PAT, passingPat)
+        jsonObject.put(JsonFields.RECEPTIONS, receptions)
+        jsonObject.put(JsonFields.TARGETS, targets)
+        jsonObject.put(JsonFields.RECEIVING_YARDS, recYards)
+        jsonObject.put(JsonFields.RECEIVING_TD, recTd)
+        jsonObject.put(JsonFields.RECEIVING_PAT, recPat)
+        jsonObject.put(JsonFields.RUSH_ATTEMPTS, rushAttempts)
+        jsonObject.put(JsonFields.RUSHING_YARDS, rushYards)
+        jsonObject.put(JsonFields.RUSHING_TD, rushTd)
+        jsonObject.put(JsonFields.RUSHING_PAT, rushPat)
+        jsonObject.put(JsonFields.DEF_SACKS, defSacks)
+        jsonObject.put(JsonFields.DEF_INT, defInt)
+        jsonObject.put(JsonFields.DEF_TD, defTd)
+
+        return jsonObject
     }
 }
