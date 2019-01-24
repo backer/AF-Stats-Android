@@ -9,12 +9,13 @@ class FootballPlay(
         var playType: PlayType,
         // the first player listed in a play action, required for every play
         // quarterback for passing plays, runner for rushing plays, defender for defensive plays
-        var player: String,
+        // defaults to opponent for opponent scores
+        var player: String = "opponent",
         // receiver for passing plays, null for other play types
         var receiver: String?,
         // yardage gained/lossed on the play, required for PASS and RUN, optional for sack, 0 otherwise
         var playYardage: Int = 0,
-        var playResult: PlayResult
+        var playResult: PlayResult = PlayResult.GAIN
 ) : Play() {
     override fun toJson(): JSONObject {
         val jsonObject = JSONObject()
@@ -47,6 +48,7 @@ class FootballPlay(
                     PlayType.DEF_INT ->
                         playType.value.plus(" by $player").plus(
                                 if (playResult.equals(PlayResult.TOUCHDOWN)) " for a " + "touchdown" else "")
+                    else -> playType.value
                 }
 
         return playString
@@ -57,7 +59,11 @@ class FootballPlay(
         RUN("run"),
         INT_THROWN("int thrown"),
         SACK("sack"),
-        DEF_INT("def int")
+        DEF_INT("def int"),
+        OPPONENT_TOUCHDOWN("opponent touchdown"),
+        OPPONENT_PAT1("opponent 1pt conv"),
+        OPPONENT_PAT2("opponent 2pt conv"),
+        OPPONENTPAT3("opponent 3pt conv"),
     }
 
     enum class PlayResult(val value: String) {
