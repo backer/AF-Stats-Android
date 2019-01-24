@@ -51,6 +51,7 @@ object JsonFields {
     const val TOTAL_POINTS_SCORED = "total_points_scored"
     const val TOTAL_POINTS_ALLOWED = "total_points_allowed"
     const val POINT_DIFFERENTIAL = "point_differential"
+    const val PLAY_BY_PLAY = "play_by_play"
 
     // player specific field names
     const val NUMBERS = "numbers"
@@ -74,6 +75,17 @@ object JsonFields {
             }
         }
 
+        return jsonArray
+    }
+
+    fun playListToJson(plays: MutableList<Play>): JSONArray {
+        val jsonArray = JSONArray()
+
+        if (!plays.isEmpty()) {
+            for (play in plays) {
+                jsonArray.put(play.toJson())
+            }
+        }
         return jsonArray
     }
 

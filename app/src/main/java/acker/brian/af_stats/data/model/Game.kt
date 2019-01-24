@@ -6,6 +6,8 @@ class Game(
         val sport: Sport,
         val gameId: String,
         val scoreSheet: MutableList<PlayerStats> = ArrayList(),
+        // play by play is optional
+        val playByPlay: MutableList<Play> = ArrayList(),
         val seasonId: String,
         val teamName: String,
         val opponentName: String = DEFAULT_OPPONENT,
@@ -25,6 +27,9 @@ class Game(
         jsonObject.put(JsonFields.TEAM_SCORE, teamScore)
         jsonObject.put(JsonFields.OPPONENT_SCORE, opponentScore)
         jsonObject.put(JsonFields.RESULT, result)
+        if (!playByPlay.isNullOrEmpty()) {
+            jsonObject.put(JsonFields.PLAY_BY_PLAY, JsonFields.playListToJson(playByPlay))
+        }
 
         return jsonObject
     }
