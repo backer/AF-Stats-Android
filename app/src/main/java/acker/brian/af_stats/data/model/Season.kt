@@ -3,19 +3,19 @@ package acker.brian.af_stats.data.model
 import org.json.JSONObject
 
 class Season(
-    val teamName: String,
-    val seasonId: String,
-    val year: String,
-    val sessionNumber: Int,
-    val sport: Game.Sport,
-    var games: MutableList<Game> = ArrayList(),
-    var scoreSheet: MutableList<PlayerStats> = ArrayList(),
-    var winCount: Int = 0,
-    var lossCount: Int = 0,
-    var drawCount: Int = 0,
-    var totalPointsScored: Int = 0,
-    var totalPointsAllowed: Int = 0,
-    var pointDifferential: Int = 0
+        val teamName: String,
+        val seasonId: String,
+        val year: String,
+        val sessionNumber: Int,
+        val sport: Game.Sport,
+        var games: MutableList<Game> = ArrayList(),
+        var scoreSheet: MutableList<PlayerStats> = ArrayList(),
+        var winCount: Int = 0,
+        var lossCount: Int = 0,
+        var drawCount: Int = 0,
+        var totalPointsScored: Int = 0,
+        var totalPointsAllowed: Int = 0,
+        var pointDifferential: Int = 0
 ) {
     fun toJson(): JSONObject {
         val jsonObject = JSONObject()

@@ -1,8 +1,8 @@
 package acker.brian.af_stats
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import acker.brian.af_stats.ui.home.HomeFragment
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,8 +11,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, HomeFragment.newInstance())
-                .commitNow()
+                    .replace(R.id.container, HomeFragment.newInstance())
+                    .commitNow()
         }
     }
 

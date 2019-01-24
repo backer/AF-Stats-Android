@@ -1,12 +1,12 @@
 package acker.brian.af_stats.ui.home
 
+import acker.brian.af_stats.R
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import acker.brian.af_stats.R
 
 class HomeFragment : Fragment() {
 
@@ -17,8 +17,8 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.home_fragment, container, false)
     }

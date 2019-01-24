@@ -3,15 +3,15 @@ package acker.brian.af_stats.data.model
 import org.json.JSONObject
 
 class Game(
-    val sport: Sport,
-    val gameId: String,
-    val scoreSheet: MutableList<PlayerStats> = ArrayList(),
-    val seasonId: String,
-    val teamName: String,
-    val opponentName: String = DEFAULT_OPPONENT,
-    var teamScore: Int = 0,
-    var opponentScore: Int = 0,
-    var result: Result = Result.DRAW
+        val sport: Sport,
+        val gameId: String,
+        val scoreSheet: MutableList<PlayerStats> = ArrayList(),
+        val seasonId: String,
+        val teamName: String,
+        val opponentName: String = DEFAULT_OPPONENT,
+        var teamScore: Int = 0,
+        var opponentScore: Int = 0,
+        var result: Result = Result.DRAW
 ) {
 
     fun toJson(): JSONObject {

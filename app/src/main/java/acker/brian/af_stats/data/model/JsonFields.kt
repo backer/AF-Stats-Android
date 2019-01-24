@@ -57,6 +57,14 @@ object JsonFields {
     const val SEASONS = "seasons"
     const val ALL_TIME_STATS = "all_time_stats"
 
+    // play specific field names
+    const val PLAY_NUMBER = "play_number"
+    const val PLAY_TYPE = "play_type"
+    const val PLAYER = "player"
+    const val RECEIVER = "receiver"
+    const val PLAY_YARDAGE = "play_yardage"
+    const val PLAY_RESULT = "play_result"
+
     fun statsListToJson(statsList: MutableList<PlayerStats>): JSONArray {
         val jsonArray = JSONArray()
 

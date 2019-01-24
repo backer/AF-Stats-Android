@@ -5,12 +5,12 @@ import org.json.JSONObject
 import timber.log.Timber
 
 class Player(
-    val firstName: String,
-    val lastName: String,
-    val playerId: String,
-    val numbers: MutableMap<Game.Sport, Int> = ArrayMap(),
-    val seasons: MutableMap<Game.Sport, MutableList<Season>> = ArrayMap(),
-    val allTimeStats: MutableMap<Game.Sport, PlayerStats> = ArrayMap()
+        val firstName: String,
+        val lastName: String,
+        val playerId: String,
+        val numbers: MutableMap<Game.Sport, Int> = ArrayMap(),
+        val seasons: MutableMap<Game.Sport, MutableList<Season>> = ArrayMap(),
+        val allTimeStats: MutableMap<Game.Sport, PlayerStats> = ArrayMap()
 ) {
     fun toJson(): JSONObject {
         val jsonObject = JSONObject()
