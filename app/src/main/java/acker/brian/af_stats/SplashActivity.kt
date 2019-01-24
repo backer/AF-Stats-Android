@@ -17,6 +17,7 @@ class SplashActivity : AppCompatActivity() {
         // until then, just show splash for 3 seconds and then transition to MainActivity
         val runnable = Runnable {
             startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            finish()
         }
         Handler().postDelayed(runnable, 3000)
     }

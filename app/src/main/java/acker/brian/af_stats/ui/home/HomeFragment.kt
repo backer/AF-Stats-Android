@@ -1,7 +1,8 @@
 package acker.brian.af_stats.ui.home
 
 import acker.brian.af_stats.R
-import android.arch.lifecycle.ViewModelProviders
+import acker.brian.af_stats.databinding.HomeFragmentBinding
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 class HomeFragment : Fragment() {
 
     companion object {
+        const val TAG = "HomeFragmentTag"
         fun newInstance() = HomeFragment()
     }
 
@@ -18,15 +20,11 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.home_fragment, container, false)
-    }
+            savedInstanceState: Bundle?): View {
+        val homeFragmentBinding = DataBindingUtil.inflate<HomeFragmentBinding>(inflater, R.layout.home_fragment, container, false)
+        viewModel = HomeViewModel()
+        homeFragmentBinding.viewModel = viewModel
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        // TODO: Use the ViewModel
+        return homeFragmentBinding.root
     }
-
 }
