@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AF-Stats</string>
+
+    <string name="welcome_message">Welcome to the AF Stats app!\nPlease select a sport.</string>
+    <string name="football">FOOTBALL</string>
+    <string name="soccer">SOCCER</string>
 </resources>
